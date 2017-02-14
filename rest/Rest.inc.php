@@ -1,8 +1,7 @@
 <?php
 	/* File : Rest.inc.php
-	 * Author : Bharat Parmar
+	 * Author : Bharat Parmar (original), @timbhison (updated)
 	*/
-
 	require_once("../class/Main.class.php");
 	class REST  extends Main 
 	{
@@ -119,7 +118,6 @@
 			header("HTTP/1.1 ".$this->_code." ".$this->get_status_message());
 			header("Content-Type:".$this->_content_type);
 		}
-
 		public function processApi(){
 			$func = strtolower(trim(str_replace("/","",$_REQUEST['function'])));
 			if((int)method_exists($this,$func) > 0)
@@ -127,7 +125,6 @@
 			else
 				$this->response('',404); // If the method not exist with in this class, response would be "Page not found".
 		}
-
 		protected function json($data){
 			if(is_array($data)){
 				return json_encode($data);
